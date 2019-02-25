@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="n.bobkov">
+		<createTable tableName="done">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="done_pk" />
+			</column>
+			<column name="tasks_id" type="bigint">
+                <constraints referencedTableName="tasks" referencedColumnNames="id"
+                    foreignKeyName="tasks_done_tasks_fk" />
+            </column>
+			<column name="isDone" type="boolean" />
+			<column name="comment" type="varchar(4096)" />
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="Role" type="entity.Role" />
+		<typeAlias alias="Task" type="entity.Task" />
+		<typeAlias alias="User" type="entity.User" />
+		<typeAlias alias="IsDone" type="entity.IsDone" />		
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="dao/mybatis/mapper/Role.xml" />
+		<mapper resource="dao/mybatis/mapper/Task.xml" />
+		<mapper resource="dao/mybatis/mapper/User.xml" />
+		<mapper resource="dao/mybatis/mapper/IsDone.xml" />
+	</mappers>
+
+</configuration>

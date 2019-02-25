@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Task">
+
+	<resultMap id="task" type="Task">
+		<id property="id" column="id" />
+		<result property="date" column="date" />
+		<result property="name" column="name" />
+		<result property="text" column="text" />
+		<association property="us" column="us" javaType="entity.User">
+			<id property="id" column="users_id" />
+		</association>
+	</resultMap>
+
+	<insert id="create" parameterType="Task">
+		<selectKey order="BEFORE" keyProperty="id" resultType="long">
+			SELECT nextval('public.tasks_id_seq')
+		</selectKey>
+		INSERT INTO public.recalls (id, user_id,date,name,text)
+		VALUES
+		(#{id},#{us.id},#{date},#{name} #{text})
+	</insert>
+
+	<select id="read" parameterType="long" resultMap="task">
+		SELECT t.id, t.user_id, t.date,t.name , t.text
+		FROM public.tasks d
+		WHERE t.id = #{id}
+	</select>
+
+	<update id="update" parameterType="Task">
+		UPDATE public.tasks SET
+		user_id =
+		#{us.id},
+		date = #{date},
+		name =#{name},
+		text =#{text}
+		WHERE
+		id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="long">
+		DELETE FROM public.tasks
+		WHERE
+		id = #{id}
+	</delete>
+	
+</mapper>
